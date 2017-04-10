@@ -1,0 +1,31 @@
+<div id="wrapper">
+  <ul>
+    <% flash.each do |key, value| %>
+      <%= content_tag :li, value.join(". "), class: "flash #{key}" %>
+    <% end %>
+  </ul>
+  <div id="content">
+    <h1>Creating New Dojo</h1>
+    <form action="/dojos/<%= @dojo.id %>" method="post" id="form">
+      <input type="hidden" name="_method" value="patch" />
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+      <div class="col">
+        <ul>
+          <li>Coding Dojo Branch:</li>
+          <li>Street:</li>
+          <li>City:</li>
+          <li>State:</li>
+        </ul>
+      </div>
+      <div class="col">
+        <input type="text" name="dojo[branch]" value="<%= @dojo.branch %>" />
+        <input type="text" name="dojo[street]" value="<%= @dojo.street %>" />
+        <input type="text" name="dojo[city]" value="<%= @dojo.city %>" />
+        <input type="text" name="dojo[state]" value="<%= @dojo.state %>" />
+        <input type="submit" value="Edit Dojo">
+      </div>
+    </form>
+    <%= link_to "Home", root_path %> |
+    <%= link_to "Show", dojo_path(@dojo) %>
+  </div>
+</div>
