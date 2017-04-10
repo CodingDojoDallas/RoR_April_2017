@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Survey Form</title>
+    <%= stylesheet_link_tag "stylesheets/surveys.scss" %>
+  </head>
+  <body>
+    <div id="wrapper">
+      <% flash.each do |key, value| %>
+        <%= content_tag :li, value, class: "flash #{key}" %>
+      <% end %>
+      <div id="content">
+        <h1>Survey Form</h1>
+        <ul>
+          <li>Your Name:</li>
+          <li><%= @user['name'] %></li>
+          <li>Dojo Location:</li>
+          <li><%= @user['location'] %></li>
+          <li>Favorite Language:</li>
+          <li><%= @user['language'] %></li>
+          <li>Comment:</li>
+          <li><%= @user['comment'] %></li>
+        </ul>
+        <a href="/">Go Back</a>
+      </div>
+    </div>
+  </body>
+</html>
