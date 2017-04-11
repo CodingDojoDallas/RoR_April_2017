@@ -1,0 +1,38 @@
+<div id="wrapper">
+  <ul>
+    <% flash.each do |key, value| %>
+      <%= content_tag :li, value.join(". "), class: "flash #{key}" %>
+    <% end %>
+  </ul>
+  <div id="content">
+    <h1>Creating New Student</h1>
+    <form action="/dojos/<%= @current_dojo.id %>/students" method="post" id="form">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+      <div class="col">
+        <ul>
+          <li>First Name:</li>
+          <li>Last Name:</li>
+          <li>Email:</li>
+          <li>Dojo:</li>
+        </ul>
+      </div>
+      <div class="col">
+        <input type="text" name="student[first_name]" />
+        <input type="text" name="student[last_name]" />
+        <input type="text" name="student[email]" />
+        <select name="student[dojo_id]">
+    			<% @dojos.each do |dojo| %>
+            <!-- Needed to select default dojo user accessed this page from -->
+    				<% if dojo == @current_dojo %>
+    					<option selected value="<%= dojo.id %>"><%= dojo.branch %></option>
+    				<% else %>
+    					<option value="<%= dojo.id %>"><%= dojo.branch %></option>
+    				<% end %>
+    			<% end %>
+    		</select>
+        <input type="submit" name="Create Student">
+      </div>
+    </form>
+    <%= link_to "Home", root_path %> | <%= link_to "#{@current_dojo.branch}", @current_dojo %>
+  </div>
+</div>
