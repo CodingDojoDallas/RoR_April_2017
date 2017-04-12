@@ -5,6 +5,12 @@
     <title>Survey Form</title>
   </head>
   <body>
+
+
+    <!-- add errors to this page; remove from result.html  -->
+
+
+    <!-- <form action="/surveys" method="post"> -->
     <form action="/surveys/create" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <label for="name">Your Name: <input type="text" name="survey[name]"></label>

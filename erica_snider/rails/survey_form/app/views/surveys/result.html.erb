@@ -5,6 +5,12 @@
     <title>Survey Form</title>
   </head>
   <body>
+
+
+    <!-- update with @survey instead of session[:survey] -->
+    <!-- remove errors to this page; add to index.html  -->
+
+
     <% if flash.key?(:errors) %>
       <% if flash[:errors].key?("name") %>
         <% flash[:errors]["name"].each do |error_messages| %>
