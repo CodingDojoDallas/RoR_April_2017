@@ -1,0 +1,14 @@
+<div>
+	<form action="/users" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<div>
+			<label>Name</label>
+			<input type="text" name="user[name]">
+		</div>
+		<div>
+			<label>Email</label>
+			<input type="text" name="user[email]">
+		</div>
+		<button>Add user</button>
+	</form>
+</div>

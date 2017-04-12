@@ -1,0 +1,23 @@
+<div>
+	<h5>
+		Thanks for submitting this form! You have sumbitted this form <%= session[:count] %> times.
+	</h5>
+</div>
+<div>
+	<h4>Submitted Information</h4>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Language</th>
+			<th>Location</th>
+			<th>Comment</th>
+		</tr>
+		<tr>
+			<td><%= @survey.name %></td>
+			<td><%= @survey.language %></td>
+			<td><%= @survey.location %></td>
+			<td><%= @survey.comment %></td>
+		</tr>
+	</table>
+	<a href="/">Back</a>
+</div>

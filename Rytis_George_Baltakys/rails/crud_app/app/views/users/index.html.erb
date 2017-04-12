@@ -1,0 +1,16 @@
+<div>
+	<% @posts.each do |post| %>
+		<p><a href="/posts/id"><%= post.post %></a> | <%= post.user.name %> | <%= post.created_at %></p>
+	<% end %>
+</div>
+<div>
+	<h3>Make a new post</h3>
+	<form action="/users" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<div>
+			<label>New post</label>
+			<textarea name="post"></textarea>
+		</div>
+		<button>Add post</button>
+	</form>
+</div>
