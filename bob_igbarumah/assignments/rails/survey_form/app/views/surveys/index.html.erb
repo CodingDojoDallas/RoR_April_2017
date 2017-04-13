@@ -1,0 +1,33 @@
+
+<h1>Dojo Survey</h1>
+
+<form action="/final" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+     Your Name: <input type="text" name="user[name]">
+    <br>
+    <br>
+  <label for="">Dojo Location:</label>
+  <select  name="user[location]">
+      <option value="Mountain View">Mountain View</option>
+      <option value="Seattle, WA">Seattle</option>
+      <option value="jose">San jose</option>
+      <option value="texas">Dallas</option>
+
+    </select>
+    <br>
+    <br>
+
+      <label for="">Favorite languge:</label>
+        <select class="language" name="user[language]">
+          <option value="Javascript">Javascript</option>
+          <option value="Python">Python</option>
+          <option value="Ruby">Ruby</option>
+          <option value="Java">C#</option>
+        </select>
+        <br><br>
+     Comment(optional):<br>
+    <textarea name='user[comment]'></textarea>
+    <br>
+    <br>
+    <input type='submit' value='Submit'>
+</form>
