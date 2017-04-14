@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 		user = User.new(user_params)
 		if user.valid?
 			user.save
-			session[:user_id] = user.user_id
+			session[:user_id] = user.id
 			redirect_to '/posts'
 		else
 			flash[:errors] = user.errors.full_messages

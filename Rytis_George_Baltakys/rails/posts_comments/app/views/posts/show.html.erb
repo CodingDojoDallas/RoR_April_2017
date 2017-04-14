@@ -5,7 +5,7 @@
 <div>
 	<h5>Comments</h5>
 	<% @comments.each do |comment| %>
-		<p><% comment.comment %></p>
+		<p><%= comment.user.name %> - <%= comment.comment %></p>
 	<% end %>
 </div>
 <div>

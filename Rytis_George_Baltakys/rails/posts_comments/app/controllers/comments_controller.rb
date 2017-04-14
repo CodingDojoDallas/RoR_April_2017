@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 	def create
 		comment = Comment.new(comment_params.merge(
 				post: Post.find(comment_params[:post]),
-				user: user.find(session[:user_id])
+				user: User.find(session[:user_id])
 			)
 		)
 		if comment.valid?

@@ -50,6 +50,7 @@ group :development do
   gem 'rails-footnotes'
   gem 'hirb'
   gem 'faker'
+  gem 'better_errors'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,17 +1,17 @@
 class PostsController < ApplicationController
 
 	def index
-		@posts = Post.all
+		@posts = Post.all.includes(:user)
 	end
 
 	def create
 		post = Post.new(post_params.merge(user: User.find(session[:user_id])))
 		if post.valid?
 			post.save
-			redirect_to '/posts'
 		else
 			flash[:post_errors] = post.errors.full_messages
 		end
+		redirect_to '/posts'
 	end
 
 	def show
