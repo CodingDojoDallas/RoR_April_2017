@@ -1,0 +1,56 @@
+<h1>Ninja <span class='gold'>Gold</span></h1>
+<p>Your Gold:
+	<% if session[:gold] >= 0 %>
+		<span class='gold'><%= session[:gold] %></span></p>
+	<% else %>
+		<span class='loss'><%= session[:gold] %></span></p>
+	<% end %>
+</p>
+<form action="/gold/dig" method="POST">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<div>
+		<h2>Farm</h2>
+		<p>(earns 10-20 gold)</p>
+		<button type="submit" name="dig" value="farm">Find Gold!</button>
+			<% if session[:where] == 'farm' %>
+				<p>Win: <span class='gold'><%= session[:win] %></span></p>
+			<% end %>
+	</div>
+	<div>
+		<h2>Cave</h2>
+		<p>(earns 5-10 gold)</p>
+		<button type="submit" name="dig" value="cave">Find Gold!</button>
+			<% if session[:where] == 'cave' %>
+				<p>Win: <span class='gold'><%= session[:win] %></span></p>
+			<% end %>
+	</div>
+	<div>
+		<h2>House</h2>
+		<p>(earns 2-5 gold)</p>
+		<button type="submit" name="dig" value="house">Find Gold!</button>
+		<% if session[:where] == 'house' %>
+			<p>Win: <span class='gold'><%= session[:win] %></span></p>
+		<% end %>
+	</div>
+	<div>
+		<h2>Casino</h2>
+		<p>(earns/takes 0-50 gold)</p>
+		<button type="submit" name="dig" value="casino">Find Gold!</button>
+		<% if session[:where] == 'casino' %>
+			<% if session[:win] > 0 %>
+				<p>Win: <span class='gold'><%= session[:win].abs %></span></p>
+			<% else %>
+				<p>Loss: <span class='loss'><%= session[:win].abs %></span></p>
+			<% end %>
+		<% end %>
+	</div>
+	<p>
+		<button type="submit" name="dig" value="reset">Reset Game</button>
+	</p>
+</form>
+Activities:
+<div id='activities'>
+	<% session[:output].each do |o| %>
+		<%= o.html_safe %>
+	<% end %>
+</div>
