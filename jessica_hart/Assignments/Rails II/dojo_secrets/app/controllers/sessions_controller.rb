@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  # Require the user to be logged in for the exception (logout)
+  skip_before_action :require_login, except: [:destroy]
+
   def new
     # Render login page
   end
@@ -10,11 +13,11 @@ class SessionsController < ApplicationController
       redirect_to @user                     # Send to user page
     else
       flash[:errors] = ['Invalid Combination']
-      redirect_to new_session_path
+      redirect_to new_session_path          # Send the user back after no success
     end
   end
   def destroy
-    reset_session
+    reset_session                           # Erase the session data
     redirect_to new_session_path
   end
 end
