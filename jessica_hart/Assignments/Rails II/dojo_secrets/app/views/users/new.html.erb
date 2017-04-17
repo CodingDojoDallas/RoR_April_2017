@@ -1,0 +1,21 @@
+<form action="/users" method="post">
+  <input type="hidden" name ="authenticity_token" value="<%=form_authenticity_token%>">
+  <label>Email: </label>
+  <input type="text" name="user[email]" id="Email">
+  <label>Name: </label>
+  <input type="text" name="user[name]" id="Name">
+  <label>Password: </label>
+  <input type="password" name="user[password]" id="Password">
+  <label>Confirm Password: </label>
+  <input type="password" name="user[password_confirmation]" id="Password_Confirmation">
+  <input type="submit" value ="Join">
+</form>
+
+
+<!-- # <%= form_for @user do |f| %>
+#   Email: <%= f.text_field :email %>
+#   Name: <%= f.text_field :name %>
+#   Password: <%= f.text_field :password %>
+#   Confirm Password: <%= f.text_field :password_confirmation %>
+#   <%= f.submit "Join" %>
+# <% end %> -->

@@ -1,21 +1,7 @@
-# require 'rails_helper'
-# feature "guest user creates an account" do
-#   scenario "successfully creates a new user account" do
-#     visit new_user_path
-#     fill_in "user_first_name", with: "shane"
-#     fill_in "user_last_name", with: "chang"
-#     fill_in "user_email", with: "schang@codingdojo.com"
-#     click_button "Create User"
-#     expect(page).to have_content "User successfully created"
-#   end
-# end
-
 require 'rails_helper'
-feature "User creates an account" do
-  before(:each) do
-    visit new_user_path
-  end
+feature "guest user creates an account" do
   scenario "successfully creates a new user account" do
+    visit new_user_path
     fill_in "user_first_name", with: "shane"
     fill_in "user_last_name", with: "chang"
     fill_in "user_email", with: "schang@codingdojo.com"
@@ -37,5 +23,6 @@ feature "User creates an account" do
   scenario "doesn't fill out last name field" do
   end
   scenario "doesn't fill out email field" do
+    expect(page).to have_content "User successfully created"
   end
 end
