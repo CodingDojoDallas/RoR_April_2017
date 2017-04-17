@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dojo Dashboard</title>
+  </head>
+  <body>
+    <h1>Listing <%= pluralize(@dojo.count, "Dojo") %></h1>
+
+
+    </form>
+
+    <table>
+      <tr>
+        <th>Coding Dojo Branch</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+      </tr>
+      <tr>
+        <% @dojo.each do |d| %>
+        <td><%= d.branch %></td>
+        <td><%= d.street %></td>
+        <td><%= d.city %></td>
+        <td><%= d.state %></td>
+      </tr>
+        <% end %>
+
+    </table>
+
+  </body>
+</html>
