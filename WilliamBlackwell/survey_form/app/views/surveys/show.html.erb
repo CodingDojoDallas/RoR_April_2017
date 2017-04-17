@@ -1,0 +1,19 @@
+<div>
+	<div>
+		Submitted Form <%= session[:count] %> Times
+	</div>
+	<table border="1">
+		<thead>
+			<td>Name</td>
+			<td>Language</td>
+			<td>Location</td>
+			<td>Comment</td>
+		</thead>
+		<tr>
+			<td><%= @survey.name %></td>
+			<td><%= @survey.language %></td>
+			<td><%= @survey.location %></td>
+			<td><%= @survey.comment %></td>
+		</tr>
+	</table>
+</div>
