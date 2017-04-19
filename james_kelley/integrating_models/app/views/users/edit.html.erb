@@ -1,0 +1,18 @@
+
+<h1>Edit User</h1>
+
+<form action="/users/<%= @user.id %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <!-- By adding a hidden element to your form containing the following code:
+    You can achieve the correct result. What happens here is that most browsers (Chrome included), will only allow GET and POST requests to be sent. This code basically pre-packages a PATCH request that can be unwrapped by a Rails server. -->
+
+    <input type="hidden" name="_method" value="patch">
+
+
+	<p>
+		<label>Name:</label>
+		<input type="text" name="name" placeholder="<%= @user.name %>">
+	</p>
+	<input type="submit" value="Edit User">
+</form>

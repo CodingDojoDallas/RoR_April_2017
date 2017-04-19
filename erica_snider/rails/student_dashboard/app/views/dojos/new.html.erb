@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New Dojo</title>
+  </head>
+  <body>
+    <h1>New Dojo</h1>
+    
+    <% if flash.key?(:errors) %>
+      <% flash[:errors].each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    <% end %>
+
+    <form  action="/dojos" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <label for="dojo[branch]">Branch: <input type="text" name="dojo[branch]"></label><br>
+      <label for="dojo[street]">Street: <input type="text" name="dojo[street]"></label><br>
+      <label for="dojo[city]">City: <input type="text" name="dojo[city]"></label><br>
+      <label for="dojo[state]">State: <input type="text" name="dojo[state]"></label><br>
+      <input type="submit" value="Create">
+    </form>
+
+    <!-- form-version of the anchor; anchor is prefered for get methods -->
+    <!-- <form action="/dojos" method="get">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="Go Back">
+    </form> -->
+    <!-- anchor is prefered for get methods -->
+    <a href="/dojos">Go Back</a>
+  </body>
+</html>
