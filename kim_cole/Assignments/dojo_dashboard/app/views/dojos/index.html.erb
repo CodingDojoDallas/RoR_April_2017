@@ -20,9 +20,9 @@
 			<td><%= dojo.city %></td>
 			<td><%= dojo.state %></td>
 			<td>
-				<a href="#">Show</a> |
-				<a href="#">Edit</a> | 
-				<a href="#">Delete</a>
+				<%= link_to "Show", dojo %> |
+				<%= link_to "Edit", edit_dojo_path(dojo) %> | 
+				<%= link_to "Delete", dojo, data: { method: :delete, confirm: "Are you sure?" } %>
 			</td>
 		</tr>
 		<% end %>
