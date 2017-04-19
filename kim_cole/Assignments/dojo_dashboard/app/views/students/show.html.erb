@@ -1,0 +1,29 @@
+<h1><%= "#{@student.branch}'s #{@student.first_name} #{@student.last_name}" %></h1>
+
+<% if flash[:notice] %>
+	<p><%= flash[:notice] %></p>
+<% end %>
+
+
+<h3>Email: <%= "#{@student.email}" %></h3>
+
+<h2>Cohort</h2>
+
+<table>
+	<thead>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email</th>
+	</thead>
+	<tbody>
+		<% @cohort.each do |student| %>
+		<tr>
+			<td><%= student.first_name %></td>
+			<td><%= student.last_name %></td>
+			<td><%= student.email %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to "Home", root_path %> | <%= link_to "Edit", edit_dojo_student_path(@student.dojo_id, @student.id) %>

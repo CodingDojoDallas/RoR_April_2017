@@ -1,6 +1,36 @@
-<h1><%= @dojo.branch %></h1>
 
+<% if flash[:notice] %>
+	<p><%= flash[:notice] %></p>
+<% end %>
+
+
+<h1><%= @dojo.branch %></h1>
 <p>Addres: <%= @dojo.street %></p>
 <p>City: <%= @dojo.city %> State: <%= @dojo.state %></p>
 
-<%= link_to "Home", root_path %> | <%= link_to "Edit", edit_dojo_path(@dojo) %>
+<h2>Student Roster</h2>
+
+<table>
+	<thead>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email</th>
+		<th>Actions</th>
+	</thead>
+	<tbody>
+	<% @students.each do |student| %>
+		<tr>
+			<td><%= student.first_name %></td>
+			<td><%= student.last_name %></td>
+			<td><%= student.email %></td>
+			<td>
+				<%= link_to "Show", dojo_student_path(@dojo, student) %> |
+				<%= link_to "Edit", edit_dojo_student_path(@dojo, student) %> | 
+				<%= link_to "Delete", dojo_student_path(@dojo, student), data: { method: :delete, confirm: "Are you sure?" } %>
+			</td>
+		</tr>
+	<% end %>		
+	</tbody>
+</table>
+
+<%= link_to "Home", root_path %> | <%= link_to "Edit", edit_dojo_path(@dojo) %> | <%= link_to "Add Student", new_dojo_student_path(@dojo) %>
