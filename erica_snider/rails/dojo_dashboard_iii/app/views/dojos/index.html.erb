@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>All the Dojos</title>
+  </head>
+  <body>
+    <h1>All the Dojos ... III</h1>
+
+    <% if flash.key?(:errors) %>
+      <% flash[:errors].each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    <% end %>
+
+    <table>
+      <thead>
+        <th>Coding Dojo Branch</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <% if @dojos %>
+          <% @dojos.each do |element| %>
+            <tr>
+              <td><%= element.branch %></td>
+              <td><%= element.street %></td>
+              <td><%= element.city %></td>
+              <td><%= element.state %></td>
+              <td>
+                <a href="dojos/<%= element.id %>">Show</a>
+                <a href="dojos/<%= element.id %>/edit">Edit</a>
+                <form class="" action="dojos/<%= element.id %>" method="post">
+                  <input type="hidden" name="_method" value="delete">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                  <input type="submit" value="Destroy">
+                </form>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <!-- form-version of the anchor; anchor is prefered for get methods -->
+    <!-- <form action="/dojos/new" method="get">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="New Dojo">
+    </form> -->
+    <!-- anchor is preferred for get methods -->
+    <a href="/dojos/new">New Dojo</a>
+  </body>
+</html>

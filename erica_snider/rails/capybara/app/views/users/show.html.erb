@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% if flash[:notice] %>
+      <% flash[:notice].each do |note| %>
+        <p id="notice"><%= note %></p>
+      <% end %>
+    <% end %>
+  </body>
+</html>

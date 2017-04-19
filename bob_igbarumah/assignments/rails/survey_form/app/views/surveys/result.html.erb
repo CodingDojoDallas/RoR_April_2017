@@ -1,0 +1,18 @@
+<h1>You got here</h1>
+<% if flash[:success] %>
+
+  			<p><%= flash[:success] %></p>
+	
+	<% end %>
+
+<a href="#">Submitted Information</a>
+<p>Name: <%=  @survey[:name] %></p>
+<p>Dojo Location: <%=  @survey[:location] %></p>
+<p>Favorite Language: <%=  @survey[:language] %></p>
+<p>Comment: <%=  @survey[:comment] %></p>
+
+<form action="/back" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit"  value="Go Back">
+
+</form>
