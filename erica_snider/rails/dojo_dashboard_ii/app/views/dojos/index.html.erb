@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>All the Dojos</title>
+  </head>
+  <body>
+    <h1>Listing All the Dojos</h1>
+    <table>
+      <thead>
+        <th>Coding Dojo Branch</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+      </thead>
+      <tbody>
+        <% if @dojos %>
+          <% @dojos.each do |element| %>
+            <tr>
+              <td><%= element.branch %></td>
+              <td><%= element.street %></td>
+              <td><%= element.city %></td>
+              <td><%= element.state %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <!-- form-version of the anchor; anchor is prefered for get methods -->
+    <!-- <form action="/dojos/new" method="get">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="New Dojo">
+    </form> -->
+    <!-- anchor is preferred for get methods -->
+    <a href="/dojos/new">New Dojo</a>
+  </body>
+</html>

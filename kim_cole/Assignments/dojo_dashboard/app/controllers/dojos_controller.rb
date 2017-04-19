@@ -11,7 +11,7 @@ class DojosController < ApplicationController
     @dojo = Dojo.new(dojo_params)
 
     if @dojo.save
-      redirect_to @dojo, notice: "You have successfully created a Dojo!"
+      redirect_to root_path, notice: "You have successfully created a Dojo!"
     else
       flash[:errors] = @dojo.errors.full_messages
       redirect_to :back

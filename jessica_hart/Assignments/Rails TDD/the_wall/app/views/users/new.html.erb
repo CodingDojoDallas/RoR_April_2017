@@ -1,0 +1,11 @@
+<h1>SIGN IN</h1>
+<% if flash[:errors] %>
+  <% flash.each do |key, value| %>
+    <%= content_tag :li, value.join(". ")%>
+  <% end %>
+<% end %>
+<form action="/users" method="post">
+  <input type="hidden" name ="authenticity_token" value="<%=form_authenticity_token%>">
+  <input type="text" name="name" value="Username" id="user_name">
+  <input type="submit" value ="Sign In">
+</form>

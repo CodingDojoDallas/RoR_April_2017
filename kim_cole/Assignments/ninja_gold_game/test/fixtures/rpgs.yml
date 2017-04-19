@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  farm: MyString
+  cave: MyString
+  house: MyString
+  casino: MyString
+
+two:
+  farm: MyString
+  cave: MyString
+  house: MyString
+  casino: MyString

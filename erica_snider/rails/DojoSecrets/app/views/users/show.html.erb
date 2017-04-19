@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!-- user profile page -->
+    <%= @user.name %>
+    <a href="/users/<%= @user.id %>/edit">Edit Profile</a>
+
+    <!-- Add secret -->
+    <form class="" action="/secrets" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      Content: <input type="text" id="Content" name="secret[context]">
+      <input type="submit" value="Create Secret">
+    </form>
+
+    <!-- show user's secrets -->
+    <% @secrets.each do |secret| %>
+      <!-- # Secret Content that everyone can see -->
+      <% if current_user == secret.user %>
+        <!-- # Secret Content that only the User that created that secret can see. -->
+        <p><%= secret.context %></p>
+        <form action="/secrets/<%= secret.id %>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete Secret">
+        </form>
+      <% end %>
+    <% end %>
+  </body>
+</html>

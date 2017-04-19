@@ -1,0 +1,23 @@
+<div>
+	<table>
+		<tr>
+			<th>Post</th>
+			<th>Author</th>
+			<th>Date</th>
+		</tr>
+	<% @posts.each do |post| %>
+		<tr><td><a href="/posts/<%= post.id %>"><%= post.post %></a></td><td><%= post.user.name %></td><td><%= post.created_at %></td>
+	<% end %>
+	</table>
+</div>
+<div>
+	<h3>Make a new post</h3>
+	<form action="/posts" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<div>
+			<label>New post</label>
+			<textarea name="post[post]"></textarea>
+		</div>
+		<button>Add post</button>
+	</form>
+</div>

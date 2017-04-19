@@ -1,0 +1,34 @@
+<h1>CodingDojo Wall</h1>
+<h2>Welcome <%= @user %></h2>
+<a href="/logout">Log Out</a>
+<h2>Post a Message</h2>
+<% if flash[:errors] %>
+  <% flash.each do |key, value| %>
+    <%= content_tag :li, value.join(". ")%>
+  <% end %>
+<% end %>
+<form action="/messages" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+  <textarea name="content" rows="8" cols="80"></textarea>
+  <input type="submit" value ="Post a Message">
+</form>
+<% @messages.each do |msg| %>
+  <p>
+    <%= msg.user.name %> <%= msg.created_at %><br />
+    <%= msg.content %>
+  </p>
+  <div style="margin-left: 60px;">
+    <% msg.comments.each do |cmt| %>
+      <p>
+        <%= cmt.user.name %> <%= cmt.created_at %><br />
+        <%= cmt.content %>
+      </p>
+    <% end %>
+    <form action="/comments" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+      <input type="hidden" name="msg_id" value="<%= msg.id %>" />
+      <textarea name="cmt_content" rows="6" cols="60"></textarea>
+      <input type="submit" value ="Post a Comment">
+    </form>
+  </div>
+<% end %>
