@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BeltReview</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<% if logged_in %>
+  		<h3>Welcome, <%= current_user.name %></h3>
+  		<a class="header_link" href="/logout">logout</a>
+  		<a class="header_link" href="/users/<%= current_user.id %>/edit">Edit my profile</a>
+  		<a class="header_link" href="/events">Dashboard</a>
+  	<% end %>
+
+    <%= yield %>
+  </body>
+</html>

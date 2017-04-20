@@ -1,0 +1,71 @@
+<div>
+	<h3>Register</h3>
+	<form action="/users" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<div>
+			<label>Name
+				<input type="text" name="user[name]">
+			</label>
+		</div>
+		<div>
+			<label>Email
+				<input type="email" name="user[email]">
+			</label>
+		</div>
+		<div>
+			<label>City
+				<input type="text" name="user[city]">
+			</label>
+		</div>
+		<div>
+			<label>State
+				<select name="user[state]">
+					<% @states.each do |state| %>
+						<option value="<%= state.id %>"><%= state.state %></option>
+					<% end %>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label>Password
+				<input type="password" name="user[password]">
+			</label>
+		</div>
+		<div>
+			<label>Password Confirm
+				<input type="password" name="user[password_confirmation]">
+			</label>
+		</div>
+		<input type="submit" value="Register">
+	</form>
+	<div>
+		<% if flash[:registration_errors] %>
+			<% flash[:registration_errors].each do |error| %>
+				<p class="error"><%= error %></p>
+			<% end %>
+		<% end %>
+	</div>
+
+	<form action="/sessions" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<div>
+			<label>Email
+				<input type="email" name="login[email]">
+			</label>
+		</div>
+		<div>
+			<label>Password
+				<input type="password" name="login[password]">
+			</label>
+		</div>
+		<input type="submit" value="Login">
+	</form>
+
+	<div>
+		<% if flash[:login_errors] %>
+			<% flash[:login_errors].each do |error| %>
+				<p class="error"><%= error %></p>
+			<% end %>
+		<% end %>
+	</div>
+</div>

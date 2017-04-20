@@ -1,0 +1,49 @@
+<h2><%= @event.name %></h2>
+<ul>
+	<li>Host: <%= @event.user.name %></li>
+	<li>Date: <%= @event.date %></li>
+	<li>Location: <%= @event.user.city %>, <%= @event.user.state.state %></li>
+	<li>Number of people joining: <%= @event.attendees.size %></li>
+</ul>
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Location</th>
+		<th>State</th>
+	</tr>
+	<% @event.attendees.each do |attendee| %>
+		<tr>
+			<td><%= attendee.name %></td>
+			<td><%= attendee.city %></td>
+			<td><%= attendee.state.state %></td>
+		</tr>
+	<% end %>
+</table>
+
+<h4>Discussion about this event:</h4>
+<% @comments.each do |comment| %>
+	<div>
+	<%= comment.user.name %> said: <%= comment.comment %> <div><sup><%= comment.created_at.strftime('%A, %d %b %Y %l:%M %p') %></sup></div>
+	</div>
+<% end %>
+
+<form action="/comments" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="comment[event]" value="<%= @event.id %>">
+	<div>
+		<label>Add a comment
+			<textarea name="comment[comment]"></textarea>
+		</label>
+	</div>
+	<div>
+		<input type="submit" value="Add comment">
+	</div>
+</form>
+<div>
+	<% if flash[:form_errors] %>
+		<% flash[:form_errors].each do |error| %>
+			<p class="error"><%= error %></p>
+		<% end %>
+	<% end %>
+</div>

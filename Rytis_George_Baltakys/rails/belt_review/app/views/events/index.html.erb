@@ -1,0 +1,106 @@
+<div>
+	<div>
+		<h3>In state events</h3>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Date</th>
+				<th>City</th>
+				<th>Host</th>
+				<th>Action</th>
+			</tr>
+			<% @in_state_events.each do |event| %>
+				<tr>
+					<td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
+					<td><%= event.created_at %></td>
+					<td><%= event.city %></td>
+					<td><%= event.user.name %></td>
+					<td>
+						<% if event.user == @current_user %>
+						<a href="/events/<%= event.id %>/edit">Edit</a>
+						<a href="/events/<%= event.id %>" data-method="delete">Delete</a>
+						<% elsif event.attendees.include? @current_user %>
+							<span>Joined</span>
+							<a href="/eventrosters/<%= event.id %>" data-method="delete">Cancel</a>
+						<% else %>
+							<a href="/eventrosters/<%= event.id %>" data-method="post">Join</a>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+	<div>
+		<h3>Out of state events</h3>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Date</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Host</th>
+				<th>Action</th>
+			</tr>
+			<% @out_of_state_events.each do |event| %>
+				<tr>
+					<td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
+					<td><%= event.created_at %></td>
+					<td><%= event.city %></td>
+					<td><%= event.state.state %></td>
+					<td><%= event.user.name %></td>
+					<td>
+						<% if event.user == @current_user %>
+						<a href="/events/<%= event.id %>/edit">Edit</a>
+						<a href="/events/<%= event.id %>" data-method="delete">Delete</a>
+						<% elsif event.attendees.include? @current_user %>
+							<span>Joined</span>
+							<a href="/eventrosters/<%= event.id %>" data-method="delete">Cancel</a>
+						<% else %>
+							<a href="/eventrosters/<%= event.id %>" data-method="post">Join</a>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+	<h3>Add a New Event</h3>
+	<div>
+		<form action="/events" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<div>
+				<label>Name
+					<input type="text" name="event[name]">
+				</label>
+			</div>
+			<div>
+				<label>Date
+					<input type="date" name="event[date]">
+				</label>
+			</div>
+			<div>
+				<label>City
+					<input type="text" name="event[city]">
+				</label>
+			</div>
+			<div>
+				<label>State
+					<select name="event[state]">
+						<% @states.each do |state| %>
+							<option value="<%= state.id %>"><%= state.state %></option>
+						<% end %>
+					</select>
+				</label>
+			</div>
+			<div>
+				<input type="submit" value="Create Event">
+			</div>
+		</form>
+		<div>
+			<% if flash[:form_errors] %>
+				<% flash[:form_errors].each do |error| %>
+					<p class="error"><%= error %></p>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>
